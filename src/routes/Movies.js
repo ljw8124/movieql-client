@@ -3,7 +3,8 @@ import {gql, useQuery} from "@apollo/client";
 const ALL_MOVIES = gql`
     query getTweets {
         allTweets {
-            id
+            id,
+            text
         }
     }
 `;
@@ -14,9 +15,10 @@ export default function Movies() {
        return <h1>Loading...</h1>
    }
    if(error) {
+       console.error(error);
        return <h1>Something went wrong.</h1>
    }
    return <ul>
-       {data.allTweets.map((tweet) => <li key={tweet.id}>{tweet.id}</li>)}
+       {data.allTweets.map((tweet) => <li key={tweet.id}>{tweet.text}/{tweet.author.fullName}</li>)}
    </ul>;
 }
