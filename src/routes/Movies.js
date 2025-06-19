@@ -1,4 +1,5 @@
 import {gql, useQuery} from "@apollo/client";
+import {Link} from "react-router-dom";
 
 const ALL_MOVIES = gql`
     query getTweets {
@@ -18,7 +19,16 @@ export default function Movies() {
        console.error(error);
        return <h1>Something went wrong.</h1>
    }
-   return <ul>
-       {data.allTweets.map((tweet) => <li key={tweet.id}>{tweet.text}/{tweet.author.fullName}</li>)}
-   </ul>;
+   return (
+       <ul>
+           <h1>Tweet!</h1>
+           {data.allTweets.map((tweet) => (
+               <li key={tweet.id}>
+                   <Link to={`/movies/${tweet.id}`}>{tweet.id}</Link>
+               </li>
+           ))}
+
+       </ul>
+   )
+       ;
 }
