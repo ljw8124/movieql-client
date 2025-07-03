@@ -1,14 +1,16 @@
 import {gql, useQuery} from "@apollo/client";
 import {Link} from "react-router-dom";
 
+// 아폴로에서는 데이터가 없다면 비어서 나옴
 const ALL_MOVIES = gql`
     query getTweets {
         allTweets {
             id,
-            text
+            text 
         }
     }
 `;
+
 
 export default function Movies() {
    const {data, loading, error} = useQuery(ALL_MOVIES);
